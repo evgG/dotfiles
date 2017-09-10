@@ -41,7 +41,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('klen/python-mode', { 'on_ft': [ 'python' ] })
 
   " js plugins
-  call dein#add('jelera/vim-javascript-syntax', { 'on_ft': [ 'javascript' ] })
+  "call dein#add('jelera/vim-javascript-syntax', { 'on_ft': [ 'javascript' ] })
   call dein#add('pangloss/vim-javascript', { 'on_ft': [ 'javascript' ] })
   call dein#add('ternjs/tern_for_vim', { 'on_ft': [ 'javascript' ] })
 
@@ -158,9 +158,6 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_typescript_checkers = ['tsuquyomi', 'tslint']
-let g:syntastic_typescript_tsc_args = '--target ES6 --noEmit'
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
