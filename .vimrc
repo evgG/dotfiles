@@ -154,6 +154,7 @@ autocmd BufNewFile,BufRead *.html set filetype=html
 autocmd BufNewFile,BufRead *.css set filetype=css
 autocmd BufNewFile,BufRead *.handlebars set filetype=handlebars
 autocmd BufNewFile,BufRead *.hbs set filetype=handlebars
+autocmd BufNewFile,BufRead *.tpl set filetype=html
 
 autocmd FileType typescript setl omnifunc=tsuquyomi#complete
 
