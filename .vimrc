@@ -14,12 +14,11 @@ if dein#load_state('~/.cache/dein')
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
 
   " Add or remove your plugins here:
-  call dein#add('Shougo/neosnippet.vim')
-  call dein#add('Shougo/neosnippet-snippets')
+  "call dein#add('Shougo/neosnippet.vim')
+  "call dein#add('Shougo/neosnippet-snippets')
 
   " You can specify revision/branch/tag.
-  call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
-
+  "call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
   "general
   call dein#add('tpope/vim-fugitive')
@@ -32,13 +31,14 @@ if dein#load_state('~/.cache/dein')
   call dein#add('bling/vim-airline')
   call dein#add('Valloric/YouCompleteMe', { 'build': './install.py --tern-completer' })
   call dein#add('vim-syntastic/syntastic')
+  call dein#add('benmills/vimux')
 
   " Snippets + engine
   call dein#add('SirVer/ultisnips')
   call dein#add('honza/vim-snippets')
 
   " Python plugins
-  call dein#add('klen/python-mode', { 'on_ft': [ 'python' ] })
+  call dein#add('klen/python-mode', { 'branch': 'develop', 'on_ft': [ 'python' ] })
 
   " js plugins
   "call dein#add('jelera/vim-javascript-syntax', { 'on_ft': [ 'javascript' ] })
@@ -49,6 +49,12 @@ if dein#load_state('~/.cache/dein')
   call dein#add('HerringtonDarkholme/yats.vim', { 'on_ft': [ 'typescript' ] })
   call dein#add('Quramy/tsuquyomi', { 'on_ft': [ 'typescript' ] })
   
+  " html and css plugins
+  call dein#add('mattn/emmet-vim', { 'on_ft': [ 'html', 'css' ] })
+
+  " ember
+  call dein#add('joukevandermaas/vim-ember-hbs', {'on_ft': [ 'handlebars'] })
+
   " Required:
   call dein#end()
   call dein#save_state()
@@ -144,8 +150,10 @@ autocmd BufNewFile,BufRead *.js set filetype=javascript
 autocmd BufNewFile,BufRead *.json set filetype=javascript
 autocmd BufNewFile,BufRead *.ts set filetype=typescript
 autocmd BufNewFile,BufRead *.py set filetype=python
-autocmd BufNewFile,BufRead *.html set tabstop=2 softtabstop=2 shiftwidth=2 ft=html
-autocmd BufNewFile,BufRead *.css set tabstop=2 softtabstop=2 shiftwidth=2 ft=css
+autocmd BufNewFile,BufRead *.html set filetype=html
+autocmd BufNewFile,BufRead *.css set filetype=css
+autocmd BufNewFile,BufRead *.handlebars set filetype=handlebars
+autocmd BufNewFile,BufRead *.hbs set filetype=handlebars
 
 autocmd FileType typescript setl omnifunc=tsuquyomi#complete
 

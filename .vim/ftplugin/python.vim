@@ -1,13 +1,15 @@
 setlocal ts=4 sts=4 sw=4 textwidth=79 expandtab autoindent fileformat=unix
 
+" let g:pymode_debug = 1
 let g:pymode_python = 'python3'
-let g:pymode_rope = 0
-let g:pymode_rope_lookup_project = 0
+" let g:pymode_rope = 1
+" let g:pymode_rope_lookup_project = 1
 
 "Linting
 let g:pymode_lint = 1
 let g:pymode_lint_checker = ["flake8","pep8","pylint"]
 let g:pymode_lint_on_write = 1
+let g:pymode_options_max_line_length = 120
 
 " Support virtualenv
 let g:pymode_virtualenv = 1
