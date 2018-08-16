@@ -1,24 +1,21 @@
-if &compatible
-  set nocompatible               " Be iMproved
-endif
+" vundle settings
+set nocompatible
+filetype off
+
+"runtimepath
+set runtimepath+=/home/bricks/.config/nvim/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
-
-" Required:
-if dein#load_state('~/.cache/dein')
-  call dein#begin('~/.cache/dein')
+if dein#load_state('/home/bricks/.config/nvim/dein')
+  call dein#begin('/home/bricks/.config/nvim/dein')
 
   " Let dein manage dein
   " Required:
-  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
+  call dein#add('/home/bricks/.config/nvim/dein/repos/github.com/Shougo/dein.vim')
 
   " Add or remove your plugins here:
-  "call dein#add('Shougo/neosnippet.vim')
-  "call dein#add('Shougo/neosnippet-snippets')
-
-  " You can specify revision/branch/tag.
-  "call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
+  call dein#add('Shougo/neosnippet.vim')
+  call dein#add('Shougo/neosnippet-snippets')
 
   "general
   call dein#add('tpope/vim-fugitive')
@@ -38,7 +35,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('honza/vim-snippets')
 
   " Python plugins
-  call dein#add('python-mode/python-mode', { 'branch': 'develop', 'on_ft': [ 'python' ] })
+  call dein#add('klen/python-mode', { 'branch': 'develop', 'on_ft': [ 'python' ] })
 
   " js plugins
   "call dein#add('jelera/vim-javascript-syntax', { 'on_ft': [ 'javascript' ] })
@@ -69,13 +66,12 @@ if dein#check_install()
   call dein#install()
 endif
 
-autocmd! bufwritepost .vimrc source %
+" reload vim automaticly
+autocmd! bufwritepost init.vim source %
 
 " defaults
-"colorscheme darkblue
-"colorscheme wombat256mod
-"colorscheme jellybeans
-colorscheme molokai
+"colorscheme molokai
+colorscheme wombat256mod
 set nowrap
 set hls
 set ic
@@ -97,8 +93,6 @@ set showcmd
 set showmatch
 set smartcase
 
-" filetype plugin on
-
 " backups, swaps, etc
 set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
@@ -113,12 +107,12 @@ set iskeyword+=:
 set laststatus=2
 
 " binds
-map <F10>	:wqa<CR>
-map <Esc><Esc>	:q!<CR>
-map <F6>	:set number!<CR>
+map  <F10>      :wqa<CR>
+map  <Esc><Esc> :q!<CR>
+map  <F6>       :set number!<CR>
 map  <F2>       :NERDTreeToggle<CR>
 map  <F3>       :tabnew<CR>
-map! <F3><Esc>	:tabnew<CR>
+map! <F3><Esc>  :tabnew<CR>
 map  <F7>       :tabnext<CR>
 " Leader
 let mapleader = ","
@@ -127,12 +121,10 @@ vnoremap < <gv
 vnoremap > >gv
 
 " vim-airlines config
-"let g:airline_theme='light'
 let g:airline_powerline_fonts = 1
 let g:airline_theme='powerlineish'
 "work with other plugins
 let g:airline#extensions#branch#enabled = 1 
-"let g:airline_fugitive_prefix = '⎇ '
 let g:airline#extensions#syntastic#enabled = 1 
 let g:airline#extensions#bufferline#enabled = 1 
 "seps
@@ -173,7 +165,6 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
@@ -182,7 +173,5 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical"
 
 if has('gui_running')
-  " set guioptions-=T  " no toolbar
-  " set lines=60 columns=108 linespace=0
   set guifont=Cousine\ 10
 endif
