@@ -36,7 +36,7 @@ let g:pymode_rope_rename_module_bind = '<leader>p1r'
 let g:pymode_rope_use_function_bind = '<C-c>ru'
 
 "Linting
-let g:pymode_lint = 1
+let g:pymode_lint = 0
 let g:pymode_lint_checker = ["flake8","pep8","pylint"]
 let g:pymode_lint_on_write = 1
 let g:pymode_options_max_line_length = 120
@@ -58,5 +58,11 @@ let g:pymode_options_colorcolumn = 1
 let g:pymode_quickfix_minheight = 3
 let g:pymode_quickfix_maxheight = 6
 
-let g:neomake_python_enabled_makers = ['flake8', 'pylint']
+" Neomake
+call neomake#configure#automake('w')
+let g:neomake_open_list = 2
+let g:neomake_python_flake_maker = {
+	\ 'args': ['--ignore=E127, E128'],
+	\ }
+let g:neomake_python_enabled_makers = ['flake8', 'pylint', 'pycodestyle']
 "let g:neomake_go_enabled_makers = ['go', 'golint', 'go vet']
