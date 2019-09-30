@@ -3,15 +3,15 @@ set nocompatible
 filetype off
 
 "runtimepath
-set runtimepath+=/home/bricks/.config/nvim/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.config/nvim/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-if dein#load_state('/home/bricks/.config/nvim/dein')
-  call dein#begin('/home/bricks/.config/nvim/dein')
+if dein#load_state('~/.config/nvim/dein')
+  call dein#begin('~/.config/nvim/dein')
 
   " Let dein manage dein
   " Required:
-  call dein#add('/home/bricks/.config/nvim/dein/repos/github.com/Shougo/dein.vim')
+  call dein#add('~/.config/nvim/dein/repos/github.com/Shougo/dein.vim')
 
   " Add or remove your plugins here:
   call dein#add('Shougo/neosnippet.vim')
@@ -25,8 +25,13 @@ if dein#load_state('/home/bricks/.config/nvim/dein')
   call dein#add('vim-scripts/L9')
   call dein#add('vim-scripts/FuzzyFinder')
   call dein#add('itchyny/lightline.vim')
-  call dein#add('Valloric/YouCompleteMe', { 'build': './install.py --tern-completer' })
+  "call dein#add('Valloric/YouCompleteMe', { 'build': './install.py --tern-completer' })
   "call dein#add('neoclide/coc.nvim', {'branch': 'release'})
+  call dein#add('Shougo/deoplete.nvim')
+  if !has('nvim')
+    call dein#add('roxma/nvim-yarp')
+    call dein#add('roxma/vim-hug-neovim-rpc')
+  endif
   call dein#add('neomake/neomake')
   call dein#add('benmills/vimux')
 
@@ -157,6 +162,7 @@ set statusline+=%*
 " let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " " If you want :UltiSnipsEdit to split your window.
 " let g:UltiSnipsEditSplit="vertical"
+let g:deoplete#enable_at_startup = 1
 
 if has('gui_running')
   set guifont=Cousine\ 10
