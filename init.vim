@@ -24,10 +24,10 @@ if dein#load_state('/home/bricks/.config/nvim/dein')
   call dein#add('Shougo/unite.vim')
   call dein#add('vim-scripts/L9')
   call dein#add('vim-scripts/FuzzyFinder')
-  call dein#add('vim-airline/vim-airline')
-  call dein#add('vim-airline/vim-airline-themes')
+  call dein#add('itchyny/lightline.vim')
   call dein#add('Valloric/YouCompleteMe', { 'build': './install.py --tern-completer' })
-  call dein#add('vim-syntastic/syntastic')
+  "call dein#add('neoclide/coc.nvim', {'branch': 'release'})
+  call dein#add('neomake/neomake')
   call dein#add('benmills/vimux')
 
   " Snippets + engine
@@ -120,25 +120,16 @@ let mapleader = ","
 vnoremap < <gv
 vnoremap > >gv
 
-" vim-airlines config
-let g:airline_powerline_fonts = 1
-let g:airline_theme='powerlineish'
-"work with other plugins
-let g:airline#extensions#branch#enabled = 1 
-let g:airline#extensions#syntastic#enabled = 1 
-let g:airline#extensions#bufferline#enabled = 1 
-"seps
-let g:airline_left_sep = '▶' 
-let g:airline_right_sep = '◀' 
-
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-  endif
-let g:airline_symbols.paste = 'ρ' 
-let g:airline_symbols.linenr = '¶ '
-" buffers in airline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'filename', 'readonly', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
+      \ }
 
 autocmd BufNewFile,BufRead *.js set filetype=javascript
 autocmd BufNewFile,BufRead *.json set filetype=javascript
@@ -156,21 +147,16 @@ autocmd FileType typescript setl omnifunc=tsuquyomi#complete
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 set completeopt-=preview
 
-" syntastic configuration
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:neomake_open_list = 5
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+" " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+" let g:UltiSnipsExpandTrigger="<c-j>"
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" " If you want :UltiSnipsEdit to split your window.
+" let g:UltiSnipsEditSplit="vertical"
 
 if has('gui_running')
   set guifont=Cousine\ 10
