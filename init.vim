@@ -25,8 +25,6 @@ if dein#load_state('~/.config/nvim/dein')
   call dein#add('vim-scripts/L9')
   call dein#add('vim-scripts/FuzzyFinder')
   call dein#add('itchyny/lightline.vim')
-  "call dein#add('Valloric/YouCompleteMe', { 'build': './install.py --tern-completer' })
-  "call dein#add('neoclide/coc.nvim', {'branch': 'release'})
   call dein#add('Shougo/deoplete.nvim')
   if !has('nvim')
     call dein#add('roxma/nvim-yarp')
@@ -41,15 +39,17 @@ if dein#load_state('~/.config/nvim/dein')
 
   " Python plugins
   call dein#add('klen/python-mode', { 'branch': 'develop', 'on_ft': [ 'python' ] })
+  call dein#add('deoplete-plugins/deoplete-jedi', { 'on_ft': [ 'python' ] })
 
   " js plugins
-  "call dein#add('jelera/vim-javascript-syntax', { 'on_ft': [ 'javascript' ] })
   call dein#add('pangloss/vim-javascript', { 'on_ft': [ 'javascript' ] })
   call dein#add('ternjs/tern_for_vim', { 'on_ft': [ 'javascript' ] })
+  call dein#add('carlitux/deoplete-ternjs', { 'build': 'npm install -g tern', 'on_ft': [ 'javascript' ] })
 
   " typescript plugins
   call dein#add('HerringtonDarkholme/yats.vim', { 'on_ft': [ 'typescript' ] })
   call dein#add('Quramy/tsuquyomi', { 'on_ft': [ 'typescript' ] })
+  call dein#add('mhartington/nvim-typescript', {'build': './install.sh', 'on_ft': [ 'typescript' ]})
   
   " html and css plugins
   call dein#add('mattn/emmet-vim', { 'on_ft': [ 'html', 'css' ] })
@@ -75,7 +75,6 @@ endif
 autocmd! bufwritepost init.vim source %
 
 " defaults
-"colorscheme molokai
 colorscheme wombat256mod
 set nowrap
 set hls
@@ -102,7 +101,7 @@ set smartcase
 set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
 if exists("&undodir")
-	set undodir=~/.vim/undo
+  set undodir=~/.vim/undo
 endif
 set backupskip=/tmp/*,/private/tmp/*
 
@@ -125,6 +124,20 @@ let mapleader = ","
 vnoremap < <gv
 vnoremap > >gv
 
+autocmd BufNewFile,BufRead *.js set filetype=javascript
+autocmd BufNewFile,BufRead *.json set filetype=javascript
+autocmd BufNewFile,BufRead *.ts set filetype=typescript
+autocmd BufNewFile,BufRead *.py set filetype=python
+autocmd BufNewFile,BufRead *.html set filetype=html
+autocmd BufNewFile,BufRead *.css set filetype=css
+autocmd BufNewFile,BufRead *.handlebars set filetype=handlebars
+autocmd BufNewFile,BufRead *.hbs set filetype=handlebars
+autocmd BufNewFile,BufRead *.tpl set filetype=html
+autocmd FileType typescript setl omnifunc=tsuquyomi#complete
+
+let g:python_host_prog = expand('~/.pyenv/def_27/bin/python')
+let g:python3_host_prog = expand('~/.pyenv/def_3/bin/python3')
+let g:deoplete#sources#jedi#python_path = 'python3'
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'active': {
@@ -136,19 +149,6 @@ let g:lightline = {
       \ },
       \ }
 
-autocmd BufNewFile,BufRead *.js set filetype=javascript
-autocmd BufNewFile,BufRead *.json set filetype=javascript
-autocmd BufNewFile,BufRead *.ts set filetype=typescript
-autocmd BufNewFile,BufRead *.py set filetype=python
-autocmd BufNewFile,BufRead *.html set filetype=html
-autocmd BufNewFile,BufRead *.css set filetype=css
-autocmd BufNewFile,BufRead *.handlebars set filetype=handlebars
-autocmd BufNewFile,BufRead *.hbs set filetype=handlebars
-autocmd BufNewFile,BufRead *.tpl set filetype=html
-
-autocmd FileType typescript setl omnifunc=tsuquyomi#complete
-
-"let g:SuperTabDefaultCompletionType = "<c-n>"
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 set completeopt-=preview
 
